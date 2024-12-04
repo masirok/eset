@@ -1,0 +1,13 @@
+# Python cache files
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Build directories
+/build/
+/dist/
+*.spec
+
+# Environment files
+/.env
+/venv/
