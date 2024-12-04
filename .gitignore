@@ -5,7 +5,7 @@
 
 # Build directories
 /build/
-/dist/
+#/dist/
 *.spec
 
 # Environment files
