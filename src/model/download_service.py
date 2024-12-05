@@ -8,11 +8,26 @@ import os
 import time
 from pathlib import Path
 from dotenv import load_dotenv
+import sys
+
+
+def get_env_path():
+    if getattr(sys, "frozen", False):
+        # exe実行時のパス
+        return os.path.join(sys._MEIPASS, ".env")
+    else:
+        # 通常実行時のパス
+        return ".env"
 
 
 class DownloadService:
     def __init__(self):
-        load_dotenv()  # .envファイルから環境変数を読み込む
+        env_path = get_env_path()
+        print(f"Loading .env from: {env_path}")
+        load_dotenv(dotenv_path=env_path)
+        print(
+            f"Environment variables loaded: {os.environ.get('ESET_SERIAL_NUMBER') is not None}"
+        )
         self.serial_number = os.environ.get("ESET_SERIAL_NUMBER")
         self.password = os.environ.get("ESET_PASSWORD")
         if not self.serial_number or not self.password:
